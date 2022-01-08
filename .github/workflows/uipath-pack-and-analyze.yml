@@ -15,6 +15,9 @@ on:
       project_path:
         required: true
         type: string
+      output_type:
+        required: true
+        type: string
       output_path:
         required: true
         type: string
@@ -40,5 +43,4 @@ jobs:
       - name: Echo
         run: echo $GITHUB_WORKSPACE
       - name: UiPath Pack
-        run: 'C:\actions-runner\_work\UiPath.CLI.1.0.7985.19721\lib\net461\uipcli.exe package pack "${{inputs.project_path}}" -o "${{github.workspace}}" --autoVersion --outputType Process' 
-    
+        run: 'C:\actions-runner\_work\UiPath.CLI.1.0.7985.19721\lib\net461\uipcli.exe package pack "${{inputs.project_path}}" -o "${{github.workspace}}" --libraryOrchestratorUrl https://*******com/ --libraryOrchestratorTenant ****** --libraryOrchestratorUsername LU-RT-DEV --libraryOrchestratorPassword ********** --autoVersion --outputType {{inputs.output_type}}' 
