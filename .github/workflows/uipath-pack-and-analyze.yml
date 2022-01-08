@@ -7,17 +7,20 @@ on:
   workflow_call:
     inputs:
       tenant:
-        required: true
+        required: false
         type: string
       username:
-        required: true
+        required: false
         type: string
       project_path:
         required: true
         type: string
+      output_path:
+        required: true
+        type: string
     secrets:
       password:
-        required: true
+        required: false
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
