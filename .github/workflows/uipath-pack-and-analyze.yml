@@ -9,6 +9,9 @@ on:
       tenant:
         required: false
         type: string
+      orchestrator_url:
+        required: true
+        type: string
       username:
         required: false
         type: string
@@ -43,4 +46,4 @@ jobs:
       - name: Echo
         run: echo $GITHUB_WORKSPACE
       - name: UiPath Pack
-        run: 'C:\actions-runner\_work\UiPath.CLI.1.0.7985.19721\lib\net461\uipcli.exe package pack "${{inputs.project_path}}" -o "${{github.workspace}}" --libraryOrchestratorUrl https://*******com/ --libraryOrchestratorTenant ****** --libraryOrchestratorUsername LU-RT-DEV --libraryOrchestratorPassword ********** --autoVersion --outputType {{inputs.output_type}}' 
+        run: 'C:\actions-runner\_work\UiPath.CLI.1.0.7985.19721\lib\net461\uipcli.exe package pack "${{inputs.project_path}}" -o "${{github.workspace}}" --libraryOrchestratorUrl ${{inputs.orchestrator_url}} --libraryOrchestratorTenant ${{inputs.tenant}} --libraryOrchestratorUsername ${{inputs.username}} --libraryOrchestratorPassword ${{secrets.password}} --autoVersion --outputType ${{inputs.output_type}}' 
