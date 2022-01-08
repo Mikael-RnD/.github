@@ -1,13 +1,5 @@
 {
-    "name": "Mikaels_RnD Workflow",
-    "description": "Octo Organization CI starter workflow.",
-    "iconName": "example-icon",
-    "categories": [
-        "Go"
-    ],
-    "filePatterns": [
-        "package.json$",
-        "^Dockerfile",
-        ".*\\.md$"
-    ]
+    "name": "UiPath CI/CD",
+    "description": "CI for UiPath projects",
+    "iconName": "example-icon"
 }
