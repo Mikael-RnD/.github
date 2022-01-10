@@ -6,14 +6,4 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
-
-    steps:
-      - uses: actions/checkout@v2
-
-      # UiPath pack
-      # Run Tests
-      # Deploy to both test and prod
-
-      - name: Run a one-line script
-        run: echo Hello from Octo Organization
+    uses: Mikael-RnD/.github/.github/workflows/uipath-pack-and-analyze.yml@main
