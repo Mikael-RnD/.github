@@ -38,8 +38,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: NuGet/setup-nuget@v1.0.5
-      - name: Setup UiPath CLI
-        run: nuget install UiPath.CLI -Version 1.0.7985.19721 -Source https://www.myget.org/F/uipath-dev/api/v3/index.json
+#      - name: Setup UiPath CLI
+#        run: nuget install UiPath.CLI -Version 1.0.7985.19721 -Source https://www.myget.org/F/uipath-dev/api/v3/index.json
       - name: Echo
         run: echo $GITHUB_WORKSPACE
 #      - name: UiPath Pack
