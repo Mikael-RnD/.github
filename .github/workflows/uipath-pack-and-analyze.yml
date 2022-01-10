@@ -10,7 +10,7 @@ on:
         required: false
         type: string
       orchestrator_url:
-        required: true
+        required: false
         type: string
       username:
         required: false
@@ -42,5 +42,8 @@ jobs:
         run: nuget install UiPath.CLI -Version 1.0.7985.19721 -Source https://www.myget.org/F/uipath-dev/api/v3/index.json
       - name: Echo
         run: echo $GITHUB_WORKSPACE
+#      - name: UiPath Pack
+#        run: uipcli.exe package pack "${{inputs.project_path}}" -o "${{github.workspace}}"   --libraryOrchestratorPassword ${{secrets.password}} --autoVersion --outputType Process --notes ${{github.}} 
+
       - name: UiPath Pack
-        run: uipcli.exe package pack "${{inputs.project_path}}" -o "${{github.workspace}}"   --libraryOrchestratorPassword ${{secrets.password}} --autoVersion --outputType Process --notes ${{github.}} 
+        run: uipcli.exe package pack "${{inputs.project_path}}" -o "${{github.workspace}}"  --autoVersion --outputType Process --notes "${{github.event.head_commit.message}}"
