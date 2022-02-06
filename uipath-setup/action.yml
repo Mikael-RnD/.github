@@ -4,5 +4,4 @@ description: 'Setup the UiPath CLI on the runner'
 runs:
   using: "composite"
   steps:
-    - run: uipath_setup.sh
-      shell: bash
+    - run: echo Hello World
