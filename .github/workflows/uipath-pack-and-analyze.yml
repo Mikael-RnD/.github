@@ -37,13 +37,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Setup Nuget.exe
-      # You may pin to the exact commit or the version.
-      # uses: warrenbuckley/Setup-Nuget@09c4593220c119ed8d6a811954d72bddd986e29a
-      uses: warrenbuckley/Setup-Nuget@v1
-      
     - name: Get UiPath CLI
-      run: nuget.exe install UiPath.CLI -Version 1.0.7985.19721 -Source https://www.myget.org/F/uipath-dev/api/v3/index.json
+      run: |
+             New-Item -Path "${{ github.workspace }}" -ItemType "directory" -Name "uipathcli";
+             Invoke-WebRequest "https://www.myget.org/F/uipath-dev/api/v2/package/UiPath.CLI/1.0.7985.19721" -OutFile "${{ github.workspace }}\\cli.zip";
+             Expand-Archive -LiteralPath "${{ github.workspace }}\\cli.Zip" -DestinationPath "${{ github.workspace }}\\uipathcli";
       
     - name: UiPath Pack
       run: uipcli.exe package pack "${{inputs.project_path}}" -o "${{github.workspace}}"  --autoVersion --outputType Process --notes "${{github.event.head_commit.message}}"
