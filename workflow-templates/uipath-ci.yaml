@@ -1,4 +1,4 @@
-# This is a basic workflow to help you get started with Actions
+# Basic workflow for utilizing GitHub Actions for CI on UiPath projects
 
 name: UiPath CI/CD
 
@@ -20,18 +20,19 @@ env:
   ORCHESTRATOR_TENANT: "Shared"
   ORCHESTRATOR_FOLDER: "TestFolder"
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: windows-2019
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
+      # The UiPath CLI is installed on Runner
       - uses: Mikael-RnD/UiPath-Setup@main
+      
+      # Run workflow analysis on and pack UiPath projects
       - uses: Mikael-RnD/UiPath-Pack-Analyze@main
         with:
           orchestratorUrl: ${{ env.ORCHESTRATOR_URL }}
@@ -40,6 +41,7 @@ jobs:
           orchestratorUsername: ${{ env.UIPATH_ACCOUNT }}
           orchestratorPassword: ${{ env.UIPATH_PASSWORD }}
           
+      # Upload packages as build artifacts to be handled by deploy job
       - uses: actions/upload-artifact@v2
         with:
           path: ${{ github.workspace }}/output
@@ -50,6 +52,7 @@ jobs:
     needs: build
     runs-on: windows-2019
     steps:
+      # Download .nupkg packages created in build job to GitHub workspace
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.1.0
         with:
@@ -58,7 +61,10 @@ jobs:
           # Destination path
           path: ${{github.workspace}} # optional
       
+      # The UiPath CLI is installed on Runner
       - uses: Mikael-RnD/UiPath-Setup@main
+      
+      # .nupkg packages are deployed to UiPath Orchestrator
       - name: UiPath Deploy
         uses: Mikael-RnD/UiPath-Deploy@main
         with:
