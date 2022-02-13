@@ -1,5 +1,5 @@
 ## Hi there 👋
-This is my organization for "Research and Development", mostly related to attempts of implementing CI/CD for UiPath projects with GitHub actions. 
+This is my organization for "Research and Development", mostly related to attempts of implementing CI/CD for UiPath projects with GitHub Actions. 
 <!--
 
 **Here are some ideas to get you started:**
