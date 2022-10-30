@@ -1,9 +1,9 @@
-ci/cd:
-  - .github/workflows/*
+#ci/cd:
+#  - .github/workflows/*
 
 documentation:
   - README.md
   - ./*.md
   
-robot:
-  - ./*.xaml
+#robot:
+#  - ./*.xaml
